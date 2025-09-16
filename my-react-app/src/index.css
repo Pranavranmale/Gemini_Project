@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+/* Scrollbar overlays content, no white line */
+html {
+  overflow-y: overlay;
+}

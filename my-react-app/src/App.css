@@ -1,0 +1,8 @@
+/* App.css */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: transparent;
+}
