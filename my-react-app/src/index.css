@@ -4,3 +4,12 @@
 html {
   overflow-y: overlay;
 }
+@custom-variant dark (&:where(.dark, .dark *));
+
+select {
+  border: none;
+  outline: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
