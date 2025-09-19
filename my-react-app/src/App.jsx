@@ -14,6 +14,7 @@ function App() {
   const[selectedHistory,setSelectedHistory]=useState('')
   const [resentHistory, setRecentHistory] = useState(JSON.parse(localStorage.getItem('history')))
   const [loader,setLoader]=useState(false)
+  const [showHistory, setShowHistory] = useState(false)
   const scrollToAns=useRef()
 
   const askQuestion = async () => {
@@ -85,14 +86,17 @@ function App() {
 },[selectedHistory])
   return (
     <div className={DarkMood=='dark'?'dark':'light'}>
-    <div className='grid grid-cols-5 h-screen text-center'>
+    <div className='grid md:grid-cols-5 h-screen text-center'>
       <select onChange={(e)=>setDarkMood(e.target.value)} name="" id="" className='fixed dark:text-white  bottom-0 p-5 dark:bg-zinc-800 bg-red-100'>
         <option value="dark">Dark</option>
         <option value="light">Light</option>
       </select>
-     <RecentSearch resentHistory={resentHistory} setRecentHistory={setRecentHistory} setSelectedHistory={setSelectedHistory}/>
-      <div className='col-span-4 p-10 '>
-        <h1 className='text-4xl bg-clip-text text-transparent bg-gradient-to-r from-pink-700 to-violet-700 m-1 p-1'>Hello User,Ask Me Anything</h1>
+      <div className={`md:block col-span-5 md:col-span-1 ${showHistory ? 'block' : 'hidden'}`}>
+        <RecentSearch resentHistory={resentHistory} setRecentHistory={setRecentHistory} setSelectedHistory={setSelectedHistory} />
+      </div>
+      <div className='md:col-span-4 col-span-5 p-2 md:p-10 '>
+        <button className='md:hidden' onClick={() => setShowHistory(!showHistory)}>{showHistory ? 'Hide History' : 'Show History'}</button>
+        <h1 className='text-2xl md:text-4xl bg-clip-text text-transparent bg-gradient-to-r from-pink-700 to-violet-700 m-1 p-1'>Hello User,Ask Me Anything</h1>
       {
         loader?<div role="status">
     <svg aria-hidden="true" className="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-purple-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -103,7 +107,7 @@ function App() {
 </div>:null
       }
       
-        <div ref={scrollToAns} className='container h-110 overflow-scroll overflow-x-hidden no-scrollbar'>
+        <div ref={scrollToAns} className='container h-[70vh] md:h-110 overflow-scroll overflow-x-hidden no-scrollbar'>
           <div className='dark:text-zinc-300 text-zinc-800 '>
             <ul>
               {
@@ -114,7 +118,7 @@ function App() {
             </ul>
           </div>
         </div>
-        <div className='dark:bg-zinc-800 w-1/2 p-1 bg-red-100 dark:text-white text-zinc-800 m-auto rounded-4xl border border-zinc-700 flex h-12 pr-5 '>
+        <div className='dark:bg-zinc-800 w-full md:w-1/2 p-1 bg-red-100 dark:text-white text-zinc-800 m-auto rounded-4xl border border-zinc-700 flex h-12 pr-5 '>
           <input type="text" value={question} onChange={(e) => setQuestion(e.target.value)} 
           onKeyDown={isEnter}
           className='w-full h-full p-3 outline-none' placeholder='Ask me anything' />
