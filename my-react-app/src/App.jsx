@@ -7,6 +7,7 @@ import Answers from './Components/Answers'
 import RecentSearch from './Components/RecentSearch'
 import QueAns from './Components/QueAns'
 
+
 function App() {
   const [question, setQuestion] = useState("")
   const [result, setresult] = useState([])
