@@ -6,6 +6,7 @@ import { URL } from './constant'
 import Answers from './Components/Answers'
 import RecentSearch from './Components/RecentSearch'
 import QueAns from './Components/QueAns'
+import ThemeIcon from './Components/ThemeIcon'
 
 
 function App() {
@@ -87,16 +88,18 @@ function App() {
   return (
     <div className={DarkMood=='dark'?'dark':'light'}>
     <div className='grid md:grid-cols-5 h-screen text-center'>
-      <select onChange={(e)=>setDarkMood(e.target.value)} name="" id="" className='fixed dark:text-white  bottom-0 p-5 dark:bg-zinc-800 bg-red-100'>
-        <option value="dark">Dark</option>
-        <option value="light">Light</option>
-      </select>
+
       <div className={`md:block col-span-5 md:col-span-1 ${showHistory ? 'block' : 'hidden'}`}>
         <RecentSearch resentHistory={resentHistory} setRecentHistory={setRecentHistory} setSelectedHistory={setSelectedHistory} />
       </div>
       <div className='md:col-span-4 col-span-5 p-2 md:p-10 '>
         <button className='md:hidden' onClick={() => setShowHistory(!showHistory)}>{showHistory ? 'Hide History' : 'Show History'}</button>
-        <h1 className='text-2xl md:text-4xl bg-clip-text text-transparent bg-gradient-to-r from-pink-700 to-violet-700 m-1 p-1'>Hello User,Ask Me Anything</h1>
+                <div className='flex justify-between items-center'>
+          <h1 className='text-2xl md:text-4xl bg-clip-text text-transparent bg-gradient-to-r from-pink-700 to-violet-700 m-1 p-1'>Hello User,Ask Me Anything</h1>
+          <button onClick={() => setDarkMood(DarkMood === 'dark' ? 'light' : 'dark')} className='dark:text-white text-zinc-800'>
+            <ThemeIcon DarkMood={DarkMood} />
+          </button>
+        </div>
       {
         loader?<div role="status">
     <svg aria-hidden="true" className="inline w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-purple-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
