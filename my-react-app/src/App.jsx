@@ -94,9 +94,9 @@ function App() {
       </div>
       <div className='md:col-span-4 col-span-5 p-2 md:p-10 '>
         <button className='md:hidden' onClick={() => setShowHistory(!showHistory)}>{showHistory ? 'Hide History' : 'Show History'}</button>
-                <div className='flex justify-between items-center'>
-          <h1 className='text-2xl md:text-4xl bg-clip-text text-transparent bg-gradient-to-r from-pink-700 to-violet-700 m-1 p-1'>Hello User,Ask Me Anything</h1>
-          <button onClick={() => setDarkMood(DarkMood === 'dark' ? 'light' : 'dark')} className='dark:text-white text-zinc-800'>
+                        <div className='flex flex-col md:flex-row justify-between md:items-center'>
+          <h1 className='text-2xl md:text-4xl bg-clip-text text-transparent bg-gradient-to-r from-pink-700 to-violet-700 m-1 p-1 order-2 md:order-1'>Hello User,Ask Me Anything</h1>
+          <button onClick={() => setDarkMood(DarkMood === 'dark' ? 'light' : 'dark')} className='dark:text-white text-zinc-800 order-1 md:order-2 self-start md:self-auto'>
             <ThemeIcon DarkMood={DarkMood} />
           </button>
         </div>
